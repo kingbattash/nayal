@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Heart, Minus, Plus } from "lucide-react"
+import { Heart, Mail, Phone, MessageCircle } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
 import {
   collectionFallback,
@@ -15,8 +15,7 @@ interface ProductDetailProps {
 }
 
 export function ProductDetail({ product }: ProductDetailProps) {
-  const { addToCart, toggleWishlist, wishlist } = useCart()
-  const [qty, setQty] = useState(1)
+  const { toggleWishlist, wishlist } = useCart()
   const [detailsOpen, setDetailsOpen] = useState(false)
   const [scentOpen, setScentOpen] = useState(false)
   const saved = wishlist.includes(product.id)
@@ -72,40 +71,45 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </button>
           </div>
 
-          <p className="mt-6 text-base font-medium text-ink">${product.price.toLocaleString()} USD</p>
+
 
           <p className="mt-6 max-w-md text-sm leading-relaxed text-subtle">{product.description}</p>
 
-          <div className="mt-8 flex items-center gap-4">
-            <div className="flex items-center border border-line">
-              <button
-                type="button"
-                onClick={() => setQty((value) => Math.max(1, value - 1))}
-                aria-label="Decrease quantity"
-                className="px-3 py-2 text-subtle hover:text-ink"
-              >
-                <Minus className="h-4 w-4" />
-              </button>
-              <span className="min-w-10 px-2 text-center text-sm">{qty}</span>
-              <button
-                type="button"
-                onClick={() => setQty((value) => value + 1)}
-                aria-label="Increase quantity"
-                className="px-3 py-2 text-subtle hover:text-ink"
-              >
-                <Plus className="h-4 w-4" />
-              </button>
+          <div className="mt-8 border border-line bg-surface p-6 space-y-4">
+            <div>
+              <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink">Inquiries & Ordering</h3>
+              <p className="mt-1 text-xs text-subtle leading-relaxed">
+                This exclusive piece is available through direct purchase. Contact our boutique to coordinate delivery.
+              </p>
             </div>
 
-            <button
-              type="button"
-              onClick={() => {
-                for (let i = 0; i < qty; i += 1) addToCart(product)
-              }}
-              className="flex-1 bg-ink px-6 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-canvas transition-colors hover:bg-ink/90"
-            >
-              Add to Bag
-            </button>
+            <div className="flex flex-col gap-3">
+              <a
+                href={`mailto:sales@nayal.com?subject=Purchase%20Inquiry:%20${encodeURIComponent(product.name)}`}
+                className="flex items-center gap-3 border border-line bg-canvas px-4 py-3 text-[11px] font-medium uppercase tracking-[0.2em] text-ink transition-colors hover:bg-surface-strong"
+              >
+                <Mail className="h-4 w-4 text-gold" strokeWidth={1.5} />
+                <span>sales@nayal.com</span>
+              </a>
+
+              <a
+                href="tel:+255776366613"
+                className="flex items-center gap-3 border border-line bg-canvas px-4 py-3 text-[11px] font-medium uppercase tracking-[0.2em] text-ink transition-colors hover:bg-surface-strong"
+              >
+                <Phone className="h-4 w-4 text-gold" strokeWidth={1.5} />
+                <span>+255 776 366 613</span>
+              </a>
+
+              <a
+                href={`https://wa.me/255670430668?text=${encodeURIComponent(`Hello, I'm interested in purchasing the "${product.name}"`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 border border-line bg-canvas px-4 py-3 text-[11px] font-medium uppercase tracking-[0.2em] text-ink transition-colors hover:bg-surface-strong"
+              >
+                <MessageCircle className="h-4 w-4 text-[#25D366]" strokeWidth={1.5} />
+                <span>WhatsApp: 0670430668</span>
+              </a>
+            </div>
           </div>
 
           <div className="mt-10 divide-y divide-line border-t border-line">

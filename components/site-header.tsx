@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Heart, Menu, Search, ShoppingBag, X } from "lucide-react"
+import { Heart, Menu, Search, X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
 
 const NAV_LINKS = [
@@ -15,7 +15,7 @@ const NAV_LINKS = [
 ]
 
 export function SiteHeader() {
-  const { cartCount, wishlist, openCart } = useCart()
+  const { wishlist } = useCart()
   const pathname = usePathname()
   const [promoOpen, setPromoOpen] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -24,12 +24,9 @@ export function SiteHeader() {
     <div className="sticky top-0 z-40">
       {promoOpen && (
         <div className="relative flex items-center justify-center border-b border-line bg-surface px-4 py-2.5 text-center">
-          <a
-            href="#newsletter"
-            className="text-[10px] font-light uppercase tracking-[0.25em] text-ink underline underline-offset-4 hover:text-subtle"
-          >
-            Sign up for exclusive updates
-          </a>
+          <span className="text-[10px] font-light uppercase tracking-[0.25em] text-ink">
+            Complimentary shipping on all East African orders
+          </span>
           <button
             onClick={() => setPromoOpen(false)}
             aria-label="Close announcement"
@@ -89,14 +86,7 @@ export function SiteHeader() {
                 <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-gold" />
               )}
             </Link>
-            <button
-              onClick={openCart}
-              aria-label="Open bag"
-              className="flex items-center gap-1 p-1 hover:opacity-60"
-            >
-              <ShoppingBag className="h-5 w-5" strokeWidth={1.2} />
-              <span className="text-xs font-medium underline underline-offset-2">{cartCount}</span>
-            </button>
+
           </div>
         </div>
       </header>

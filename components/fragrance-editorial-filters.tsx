@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
-export type FragranceFilter = "all" | "lattafa-pride" | "ahmed-al-maghribi"
+export type FragranceFilter = "all" | "women" | "men"
 
 const FILTERS: {
   value: FragranceFilter
@@ -12,16 +12,16 @@ const FILTERS: {
   href: string
 }[] = [
   {
-    value: "lattafa-pride",
-    label: "Lattafa Pride",
-    image: "/Lattafa_Pride_Ansaam_Gold.jpg",
-    href: "/fragrance?filter=lattafa-pride",
+    value: "women",
+    label: "Women",
+    image: "/paris-corner-taskeen-caramel-.jpg",
+    href: "/fragrance?filter=women",
   },
   {
-    value: "ahmed-al-maghribi",
-    label: "Ahmed Al Maghribi",
-    image: "/Ahmed_Al_Maghribi_Blu_Oud_Eau_De_Parfum.jpg",
-    href: "/fragrance?filter=ahmed-al-maghribi",
+    value: "men",
+    label: "Men",
+    image: "/s-l400.jpg",
+    href: "/fragrance?filter=men",
   },
 ]
 
@@ -59,7 +59,7 @@ export function FragranceEditorialFilters({
           )
 
           const className = cn(
-            "group relative flex aspect-[4/5] items-center justify-center overflow-hidden bg-surface md:aspect-[3/4]",
+            "group relative flex aspect-[2.2/1] items-center justify-center overflow-hidden bg-surface md:aspect-[2.8/1]",
             selected && "ring-2 ring-inset ring-ink/80",
           )
 

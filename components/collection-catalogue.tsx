@@ -7,22 +7,14 @@ import { ProductGrid } from "@/components/product-grid"
 import { cn } from "@/lib/utils"
 import type { Product } from "@/lib/products"
 
-type SortKey = "featured" | "price-asc" | "price-desc" | "alpha"
-type PriceBand = "all" | "under-500" | "500-1500" | "over-1500"
+type SortKey = "featured" | "alpha"
 
 const SORT_OPTIONS: { value: SortKey; label: string }[] = [
   { value: "featured", label: "Featured" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "price-desc", label: "Price: High to Low" },
   { value: "alpha", label: "Alphabetical" },
 ]
 
-const PRICE_BANDS: { value: PriceBand; label: string }[] = [
-  { value: "all", label: "All prices" },
-  { value: "under-500", label: "Under $500" },
-  { value: "500-1500", label: "$500 – $1,500" },
-  { value: "over-1500", label: "Over $1,500" },
-]
+
 
 interface CollectionCatalogueProps {
   products: Product[]
@@ -39,7 +31,6 @@ export function CollectionCatalogue({ products, lines }: CollectionCatalogueProp
   const [sort, setSort] = useState<SortKey>("featured")
   const [sortOpen, setSortOpen] = useState(false)
   const [filtersOpen, setFiltersOpen] = useState(false)
-  const [priceBand, setPriceBand] = useState<PriceBand>("all")
   const [newOnly, setNewOnly] = useState(false)
 
   const tabs: CategoryTab[] = useMemo(
@@ -54,16 +45,11 @@ export function CollectionCatalogue({ products, lines }: CollectionCatalogueProp
     let list = products
     if (activeTab !== "all") list = list.filter((p) => p.line === activeTab)
     if (newOnly) list = list.filter((p) => p.tag)
-    if (priceBand === "under-500") list = list.filter((p) => p.price < 500)
-    if (priceBand === "500-1500") list = list.filter((p) => p.price >= 500 && p.price <= 1500)
-    if (priceBand === "over-1500") list = list.filter((p) => p.price > 1500)
 
     const sorted = [...list]
-    if (sort === "price-asc") sorted.sort((a, b) => a.price - b.price)
-    else if (sort === "price-desc") sorted.sort((a, b) => b.price - a.price)
-    else if (sort === "alpha") sorted.sort((a, b) => a.name.localeCompare(b.name))
+    if (sort === "alpha") sorted.sort((a, b) => a.name.localeCompare(b.name))
     return sorted
-  }, [products, activeTab, newOnly, priceBand, sort])
+  }, [products, activeTab, newOnly, sort])
 
   const activeSortLabel = SORT_OPTIONS.find((o) => o.value === sort)?.label ?? "Featured"
 
@@ -129,29 +115,7 @@ export function CollectionCatalogue({ products, lines }: CollectionCatalogueProp
       {filtersOpen && (
         <div className="animate-fade-in border-b border-line bg-surface/60 px-4 py-8 sm:px-8">
           <div className="flex flex-col gap-8 sm:flex-row sm:gap-16">
-            <fieldset>
-              <legend className="mb-4 text-[10px] uppercase tracking-[0.3em] text-subtle">
-                Price
-              </legend>
-              <div className="flex flex-wrap gap-2">
-                {PRICE_BANDS.map((band) => (
-                  <button
-                    key={band.value}
-                    type="button"
-                    aria-pressed={priceBand === band.value}
-                    onClick={() => setPriceBand(band.value)}
-                    className={cn(
-                      "border px-4 py-2 text-[10px] uppercase tracking-[0.2em] transition-colors",
-                      priceBand === band.value
-                        ? "border-ink text-ink"
-                        : "border-line text-subtle hover:border-ink hover:text-ink",
-                    )}
-                  >
-                    {band.label}
-                  </button>
-                ))}
-              </div>
-            </fieldset>
+
 
             <fieldset>
               <legend className="mb-4 text-[10px] uppercase tracking-[0.3em] text-subtle">
@@ -172,11 +136,10 @@ export function CollectionCatalogue({ products, lines }: CollectionCatalogueProp
               </button>
             </fieldset>
 
-            {(priceBand !== "all" || newOnly) && (
+            {newOnly && (
               <button
                 type="button"
                 onClick={() => {
-                  setPriceBand("all")
                   setNewOnly(false)
                 }}
                 className="self-end text-[10px] uppercase tracking-[0.25em] text-gold underline underline-offset-4"

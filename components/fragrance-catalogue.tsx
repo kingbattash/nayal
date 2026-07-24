@@ -11,17 +11,15 @@ import { ProductGrid } from "@/components/product-grid"
 import { cn } from "@/lib/utils"
 import type { Product } from "@/lib/products"
 
-type SortKey = "featured" | "price-asc" | "price-desc" | "alpha"
+type SortKey = "featured" | "alpha"
 
 const SORT_OPTIONS: { value: SortKey; label: string }[] = [
   { value: "featured", label: "Featured" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "price-desc", label: "Price: High to Low" },
   { value: "alpha", label: "Alphabetical" },
 ]
 
 function parseFilter(value: string | null): FragranceFilter {
-  if (value === "lattafa-pride" || value === "ahmed-al-maghribi") return value
+  if (value === "women" || value === "men") return value
   return "all"
 }
 
@@ -41,18 +39,16 @@ export function FragranceCatalogue({ products }: FragranceCatalogueProps) {
   const visible = useMemo(() => {
     let list = products
 
-    if (activeFilter === "lattafa-pride") {
-      list = list.filter((p) => p.brand === "Lattafa Pride")
-    } else if (activeFilter === "ahmed-al-maghribi") {
-      list = list.filter((p) => p.brand === "Ahmed Al Maghribi")
+    if (activeFilter === "women") {
+      list = list.filter((p) => p.gender === "women" || p.gender === "unisex" || [17, 18, 20, 23, 27].includes(p.id))
+    } else if (activeFilter === "men") {
+      list = list.filter((p) => p.gender === "men" || p.gender === "unisex" || [19, 21, 22, 24, 25, 26].includes(p.id))
     }
 
     if (newOnly) list = list.filter((p) => p.tag)
 
     const sorted = [...list]
-    if (sort === "price-asc") sorted.sort((a, b) => a.price - b.price)
-    else if (sort === "price-desc") sorted.sort((a, b) => b.price - a.price)
-    else if (sort === "alpha") sorted.sort((a, b) => a.name.localeCompare(b.name))
+    if (sort === "alpha") sorted.sort((a, b) => a.name.localeCompare(b.name))
     return sorted
   }, [products, activeFilter, newOnly, sort])
 

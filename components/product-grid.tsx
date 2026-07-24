@@ -21,21 +21,16 @@ export function ProductGrid({
     return (
       <div
         className={cn(
-          "grid grid-cols-2 border-t border-line lg:grid-cols-4",
+          "grid grid-cols-2 gap-4 px-4 py-8 lg:grid-cols-4 lg:gap-6 lg:px-8 lg:py-12",
           className,
         )}
       >
-        {products.map((product, index) => (
+        {products.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
             variant="tile"
-            className={cn(
-              "border-b border-line",
-              index % 2 !== 1 && "border-r border-line",
-              "lg:border-r lg:border-line",
-              index % 4 === 3 && "lg:border-r-0",
-            )}
+            className="border border-line"
           />
         ))}
       </div>

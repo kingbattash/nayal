@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Eye, Heart } from "lucide-react"
+import { Heart } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
 import {
   collectionFallback,
@@ -25,12 +25,12 @@ export function ProductCard({
   variant = "catalog",
   className,
 }: ProductCardProps) {
-  const { addToCart, toggleWishlist, openQuickView, wishlist } = useCart()
+  const { toggleWishlist, wishlist } = useCart()
   const saved = wishlist.includes(product.id)
 
   if (variant === "tile") {
     return (
-      <article className={cn("group flex h-full flex-col bg-surface-strong", className)}>
+      <article className={cn("group flex h-full flex-col bg-canvas", className)}>
         <Link
           href={`/product/${product.id}`}
           className="flex flex-1 flex-col"
@@ -47,7 +47,7 @@ export function ProductCard({
             />
           </div>
 
-          <div className="border-t border-line/70 px-4 pb-5 pt-4 sm:px-5">
+          <div className="border-t border-line/70 bg-canvas px-4 pb-5 pt-4 sm:px-5">
             <h3 className="font-serif text-[13px] font-normal leading-snug text-ink">
               {formatProductTileLabel(product)}
             </h3>
@@ -85,21 +85,7 @@ export function ProductCard({
           >
             <Heart className={`h-4 w-4 ${saved ? "fill-ink" : ""}`} />
           </button>
-          <button
-            onClick={() => openQuickView(product)}
-            aria-label="Quick view"
-            className="rounded-full border border-line bg-canvas p-2.5 text-ink shadow-sm hover:bg-surface"
-          >
-            <Eye className="h-4 w-4" />
-          </button>
         </div>
-
-        <button
-          onClick={() => addToCart(product)}
-          className="absolute inset-x-0 bottom-0 translate-y-3 bg-ink py-4 text-[10px] font-medium uppercase tracking-[0.25em] text-canvas opacity-0 transition-all duration-300 hover:bg-ink/90 group-hover:translate-y-0 group-hover:opacity-100"
-        >
-          Add to Bag · ${product.price.toLocaleString()}
-        </button>
       </div>
 
       <div className="mt-5 space-y-1 text-center">
@@ -109,7 +95,6 @@ export function ProductCard({
           </h3>
         </Link>
         <p className="font-serif text-xs italic text-subtle">{product.line}</p>
-        <p className="pt-1 text-sm font-medium text-ink">${product.price.toLocaleString()} USD</p>
       </div>
     </article>
   )

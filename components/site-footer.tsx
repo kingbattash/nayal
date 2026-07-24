@@ -1,9 +1,7 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react"
-import { useCart } from "@/components/cart-provider"
+import { Mail, MapPin, Phone } from "lucide-react"
 import { container } from "@/app/styles/tokens/layout"
 
 const COLLECTION_LINKS = [
@@ -23,47 +21,8 @@ const SERVICE_LINKS = [
 ]
 
 export function SiteFooter() {
-  const { notify } = useCart()
-  const [email, setEmail] = useState("")
-
   return (
     <footer className="border-t border-line bg-canvas">
-      {/* Newsletter */}
-      <section id="newsletter" className="border-b border-line py-20">
-        <div className="mx-auto w-full max-w-2xl px-6 text-center">
-          <p className="text-[10px] uppercase tracking-[0.4em] text-subtle">Join the House of Nayal</p>
-          <h2 className="mt-5 font-serif text-2xl font-light leading-relaxed tracking-wide text-balance">
-            Sign up to stay up to date on events, collections, and exclusive news.
-          </h2>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault()
-              if (!email) return
-              notify("Thank you for joining our private registry")
-              setEmail("")
-            }}
-            className="mx-auto mt-8 max-w-lg"
-          >
-            <div className="flex items-center border-b border-line-strong py-3">
-              <label htmlFor="newsletter-email" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="newsletter-email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email address *"
-                className="w-full bg-transparent pr-10 text-[11px] uppercase tracking-[0.2em] text-ink placeholder:text-subtle focus:outline-none"
-              />
-              <button type="submit" aria-label="Subscribe" className="p-1 text-ink hover:opacity-60">
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-          </form>
-        </div>
-      </section>
 
       {/* Editorial columns */}
       <div className={`${container.base} grid grid-cols-2 gap-10 py-16 md:grid-cols-4 lg:grid-cols-5`}>
