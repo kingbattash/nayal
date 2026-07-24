@@ -1,12 +1,24 @@
 import type { Metadata } from "next"
-import { CollectionView } from "@/components/collection-view"
+import { Suspense } from "react"
+import { FragranceCatalogue } from "@/components/fragrance-catalogue"
+import { FragrancePageHeader } from "@/components/fragrance-page-header"
+import { getProductsByCollection } from "@/lib/products"
 
 export const metadata: Metadata = {
-  title: "Fragrance — NAYAL",
+  title: "Fragrances and Body Care — NAYAL",
   description:
-    "Signature botanical absolute oils, premium perfumes and coastal blends composed in Zanzibar.",
+    "NAYAL collection of fragrances including eau de parfums from Lattafa Pride, Ahmed Al Maghribi and the maison atelier.",
 }
 
 export default function FragrancePage() {
-  return <CollectionView collection="fragrance" />
+  const products = getProductsByCollection("fragrance")
+
+  return (
+    <>
+      <FragrancePageHeader />
+      <Suspense fallback={null}>
+        <FragranceCatalogue products={products} />
+      </Suspense>
+    </>
+  )
 }

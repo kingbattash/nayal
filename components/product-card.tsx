@@ -1,16 +1,64 @@
 "use client"
 
+import Link from "next/link"
 import { Eye, Heart } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
-import { collectionFallback, type Product } from "@/lib/products"
+import {
+  collectionFallback,
+  formatProductTileLabel,
+  type Product,
+} from "@/lib/products"
 import { media } from "@/app/styles/tokens/layout"
+import { cn } from "@/lib/utils"
 
-export function ProductCard({ product }: { product: Product }) {
+type ProductCardVariant = "catalog" | "tile"
+
+interface ProductCardProps {
+  product: Product
+  /** Versace PLP tile (image + single-line serif caption) vs full catalogue card. */
+  variant?: ProductCardVariant
+  className?: string
+}
+
+export function ProductCard({
+  product,
+  variant = "catalog",
+  className,
+}: ProductCardProps) {
   const { addToCart, toggleWishlist, openQuickView, wishlist } = useCart()
   const saved = wishlist.includes(product.id)
 
+  if (variant === "tile") {
+    return (
+      <article className={cn("group flex h-full flex-col bg-surface-strong", className)}>
+        <Link
+          href={`/product/${product.id}`}
+          className="flex flex-1 flex-col"
+          aria-label={formatProductTileLabel(product)}
+        >
+          <div className="relative flex flex-1 items-center justify-center px-6 pb-4 pt-10 sm:px-8 sm:pt-12">
+            <img
+              src={product.image || "/placeholder.svg"}
+              alt={product.name}
+              className="max-h-[220px] w-full object-contain object-center transition-transform duration-500 group-hover:scale-[1.02] sm:max-h-[260px]"
+              onError={(e) => {
+                e.currentTarget.src = collectionFallback[product.collection]
+              }}
+            />
+          </div>
+
+          <div className="border-t border-line/70 px-4 pb-5 pt-4 sm:px-5">
+            <h3 className="font-serif text-[13px] font-normal leading-snug text-ink">
+              {formatProductTileLabel(product)}
+            </h3>
+          </div>
+        </Link>
+      </article>
+    )
+  }
+
   return (
-    <article className="group flex flex-col bg-canvas">
+    <article className={cn("group flex flex-col bg-canvas", className)}>
       <div className={`relative ${media.portrait} overflow-hidden border border-line bg-surface`}>
         {product.tag && (
           <span className="absolute left-3 top-3 z-10 bg-canvas/90 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.2em] text-ink">
@@ -18,16 +66,17 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
         )}
 
-        <img
-          src={product.image || "/placeholder.svg"}
-          alt={product.name}
-          className="h-full w-full object-cover object-center opacity-95 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-100"
-          onError={(e) => {
-            e.currentTarget.src = collectionFallback[product.collection]
-          }}
-        />
+        <Link href={`/product/${product.id}`} className="block h-full w-full">
+          <img
+            src={product.image || "/placeholder.svg"}
+            alt={product.name}
+            className="h-full w-full object-cover object-center opacity-95 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-100"
+            onError={(e) => {
+              e.currentTarget.src = collectionFallback[product.collection]
+            }}
+          />
+        </Link>
 
-        {/* Hover utilities */}
         <div className="absolute right-3 top-3 z-10 flex translate-x-2 flex-col gap-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
           <button
             onClick={() => toggleWishlist(product.id)}
@@ -45,7 +94,6 @@ export function ProductCard({ product }: { product: Product }) {
           </button>
         </div>
 
-        {/* Add to bag */}
         <button
           onClick={() => addToCart(product)}
           className="absolute inset-x-0 bottom-0 translate-y-3 bg-ink py-4 text-[10px] font-medium uppercase tracking-[0.25em] text-canvas opacity-0 transition-all duration-300 hover:bg-ink/90 group-hover:translate-y-0 group-hover:opacity-100"
@@ -55,7 +103,11 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
 
       <div className="mt-5 space-y-1 text-center">
-        <h3 className="text-[12px] font-light uppercase tracking-[0.2em] text-ink">{product.name}</h3>
+        <Link href={`/product/${product.id}`}>
+          <h3 className="text-[12px] font-light uppercase tracking-[0.2em] text-ink transition-colors hover:text-subtle">
+            {product.name}
+          </h3>
+        </Link>
         <p className="font-serif text-xs italic text-subtle">{product.line}</p>
         <p className="pt-1 text-sm font-medium text-ink">${product.price.toLocaleString()} USD</p>
       </div>

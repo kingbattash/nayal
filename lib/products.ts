@@ -10,11 +10,15 @@ export interface Product {
   slug: string
   name: string
   collection: Collection
+  /** Maison or partner brand shown on PLP tiles and PDP. */
+  brand: string
   line: string
   price: number
   image: string
   description: string
   features: string[]
+  concentration: string
+  volume: string
   tag?: string
 }
 
@@ -29,7 +33,7 @@ export const collectionFallback: Record<Collection, string> = {
   women: u("1490481651871-ab68de25d43d"),
   men: u("1507679799987-c73779587ccf"),
   bedsheets: u("1505693416388-ac5ce068fe85"),
-  fragrance: u("1541643600914-78b084683601"),
+  fragrance: "/Lattafa_Pride_Ansaam_Gold.jpg",
   "home-supplies": u("1513694203232-719a280e022f"),
 }
 
@@ -62,8 +66,8 @@ export const collectionMeta: Record<
     title: "Fragrance",
     kicker: "The Atelier Scent",
     blurb:
-      "Signature botanical absolute oils, premium perfumes and coastal blends hand-composed in Zanzibar.",
-    hero: u("1592945403244-b3fbafd7f539"),
+      "NAYAL collection of fragrances including eau de toilettes and eau de parfums for women and men as well as botanical oils, parfum extracts and more.",
+    hero: "/Lattafa_Pride_Ansaam_Gold.jpg",
   },
   "home-supplies": {
     title: "Home Supplies",
@@ -81,8 +85,11 @@ export const products: Product[] = [
     slug: "la-vacanza-silk-shirt",
     name: "La Vacanza Silk Shirt",
     collection: "women",
+    brand: "NAYAL",
     line: "Haute Couture",
     price: 1350,
+    concentration: "",
+    volume: "",
     image: u("1490481651871-ab68de25d43d"),
     description:
       "Relaxed-fit tailored shirt in pure mulberry silk, detailed with hand-pressed gold signature buttons and tonal prints inspired by Swahili coastal geometry.",
@@ -94,8 +101,11 @@ export const products: Product[] = [
     slug: "atelier-trench-coat",
     name: "Classic Atelier Trench Coat",
     collection: "women",
+    brand: "NAYAL",
     line: "Tailoring",
     price: 2450,
+    concentration: "",
+    volume: "",
     image: u("1525507119028-ed4c629a60a3"),
     description:
       "Double-breasted silhouette crafted from water-repellent cotton gabardine and lined with the signature monogram satin.",
@@ -106,8 +116,11 @@ export const products: Product[] = [
     slug: "oyster-bay-slip-dress",
     name: "Oyster Bay Slip Dress",
     collection: "women",
+    brand: "NAYAL",
     line: "Beachwear",
     price: 980,
+    concentration: "",
+    volume: "",
     image: u("1539109136881-3be0616acf4b"),
     description:
       "A liquid bias-cut slip in featherweight silk charmeuse, made for languid evenings along the coast.",
@@ -118,8 +131,11 @@ export const products: Product[] = [
     slug: "zanzibar-linen-gown",
     name: "Zanzibar Linen Gown",
     collection: "women",
+    brand: "NAYAL",
     line: "Resort",
     price: 1620,
+    concentration: "",
+    volume: "",
     image: u("1595777457583-95e059d581b8"),
     description:
       "A floor-sweeping column gown in breathable European linen with hand-finished shell buttons.",
@@ -131,8 +147,11 @@ export const products: Product[] = [
     slug: "coastal-tailored-blazer",
     name: "Coastal Tailored Blazer",
     collection: "women",
+    brand: "NAYAL",
     line: "Tailoring",
     price: 1780,
+    concentration: "",
+    volume: "",
     image: u("1483985988355-763728e1935b"),
     description:
       "A softly structured blazer with a nipped waist, cut for sharp evening dressing with fluid movement.",
@@ -143,8 +162,11 @@ export const products: Product[] = [
     slug: "indian-ocean-kaftan",
     name: "Indian Ocean Kaftan",
     collection: "women",
+    brand: "NAYAL",
     line: "Beachwear",
     price: 720,
+    concentration: "",
+    volume: "",
     image: u("1502716119720-b23a93e5fe1b"),
     description:
       "An airy printed kaftan with dropped shoulders and a deep V, engineered for the warmest afternoons.",
@@ -157,8 +179,11 @@ export const products: Product[] = [
     slug: "sartorial-linen-blazer",
     name: "Sartorial Linen Blazer",
     collection: "men",
+    brand: "NAYAL",
     line: "Resort Tailoring",
     price: 1850,
+    concentration: "",
+    volume: "",
     image: u("1507679799987-c73779587ccf"),
     description:
       "A deconstructed lightweight blazer for warm coastal escapes, tailored in single-breasted breathable European linen.",
@@ -170,8 +195,11 @@ export const products: Product[] = [
     slug: "tailored-denim-blouson",
     name: "Tailored Denim Blouson",
     collection: "men",
+    brand: "NAYAL",
     line: "Ready-to-Wear",
     price: 1550,
+    concentration: "",
+    volume: "",
     image: u("1611312449412-6cefac5dc3e4"),
     description:
       "A cropped luxury denim jacket with bespoke heavy-thread contrast stitching and custom metal rivets.",
@@ -182,8 +210,11 @@ export const products: Product[] = [
     slug: "unstructured-linen-suit",
     name: "Unstructured Linen Suit",
     collection: "men",
+    brand: "NAYAL",
     line: "Resort Tailoring",
     price: 2680,
+    concentration: "",
+    volume: "",
     image: u("1521341957697-b93449760f30"),
     description:
       "A two-piece unstructured suit in slubbed linen, tailored to move with the ease of the tropics.",
@@ -194,8 +225,11 @@ export const products: Product[] = [
     slug: "premium-poplin-shirt",
     name: "Premium Poplin Shirt",
     collection: "men",
+    brand: "NAYAL",
     line: "Shirting",
     price: 640,
+    concentration: "",
+    volume: "",
     image: u("1594633312681-425c7b97ccd1"),
     description:
       "A crisp cutaway-collar shirt in two-ply Egyptian cotton poplin with mother-of-pearl buttons.",
@@ -206,8 +240,11 @@ export const products: Product[] = [
     slug: "resort-camp-shirt",
     name: "Resort Camp Shirt",
     collection: "men",
+    brand: "NAYAL",
     line: "Resort Wear",
     price: 720,
+    concentration: "",
+    volume: "",
     image: u("1596755094514-f87e34085b2c"),
     description:
       "A relaxed camp-collar shirt in printed silk twill, cut for effortless dressing from sand to soirée.",
@@ -219,8 +256,11 @@ export const products: Product[] = [
     slug: "heritage-chambray-trouser",
     name: "Heritage Chambray Trouser",
     collection: "men",
+    brand: "NAYAL",
     line: "Ready-to-Wear",
     price: 590,
+    concentration: "",
+    volume: "",
     image: u("1473966968600-fa801b869a1a"),
     description:
       "A straight-leg chambray trouser with a clean waistband and refined tonal topstitching.",
@@ -233,8 +273,11 @@ export const products: Product[] = [
     slug: "imperial-sateen-bed-set",
     name: "Imperial Sateen Bed Set",
     collection: "bedsheets",
+    brand: "NAYAL",
     line: "Egyptian Cotton",
     price: 1100,
+    concentration: "",
+    volume: "",
     image: u("1505693416388-ac5ce068fe85"),
     description:
       "Woven in 1200 thread-count long-staple Egyptian cotton with geometric borders drawn from coastal architecture.",
@@ -246,8 +289,11 @@ export const products: Product[] = [
     slug: "satin-silk-duvet-suite",
     name: "Satin Silk Duvet Suite",
     collection: "bedsheets",
+    brand: "NAYAL",
     line: "Mulberry Silk",
     price: 1650,
+    concentration: "",
+    volume: "",
     image: u("1616594039964-ae9021a400a0"),
     description:
       "22-momme pure mulberry silk that regulates temperature and protects skin and hair through the night.",
@@ -258,8 +304,11 @@ export const products: Product[] = [
     slug: "stone-town-linen-set",
     name: "Stone Town Linen Set",
     collection: "bedsheets",
+    brand: "NAYAL",
     line: "Stonewashed Linen",
     price: 890,
+    concentration: "",
+    volume: "",
     image: u("1522771739844-6a9f6d5f14af"),
     description:
       "Garment-washed French flax linen with a lived-in softness and a quiet, breathable hand.",
@@ -270,8 +319,11 @@ export const products: Product[] = [
     slug: "pemba-percale-collection",
     name: "Pemba Percale Collection",
     collection: "bedsheets",
+    brand: "NAYAL",
     line: "Crisp Percale",
     price: 760,
+    concentration: "",
+    volume: "",
     image: u("1631049307264-da0ec9d70304"),
     description:
       "A cool, matte percale weave with a crisp hotel finish and hand-stitched cord trim.",
@@ -281,63 +333,186 @@ export const products: Product[] = [
   // ── FRAGRANCE ────────────────────────────────────────────
   {
     id: 17,
-    slug: "nayal-oud-absolute",
-    name: "Nayal Oud Absolute Parfum",
+    slug: "lattafa-pride-affection",
+    name: "Affection",
     collection: "fragrance",
-    line: "Extrait de Parfum",
-    price: 380,
-    image: u("1541643600914-78b084683601"),
+    brand: "Lattafa Pride",
+    line: "Eau de Parfum",
+    price: 95,
+    concentration: "Eau de Parfum",
+    volume: "100 ml",
+    image: "/Lattafa_Pride_Affection.jpg",
     description:
-      "An intense, mysterious projection of organic oud accented by Damask rose, Zanzibar cloves, saffron and sweet leather.",
-    features: ["30% pure concentration", "Gold-capped flacon", "12+ hour longevity"],
-    tag: "Signature",
+      "A warm gourmand embrace of vanilla, soft musk and amber wrapped in Lattafa Pride's signature gold-accented presentation.",
+    features: ["Natural spray vaporisateur", "100 ml flacon", "Long-lasting sillage"],
+    tag: "New In",
   },
   {
     id: 18,
-    slug: "bianco-orris-intense",
-    name: "Bianco Orris Intense",
+    slug: "lattafa-pride-ansaam-gold",
+    name: "Ansaam Gold",
     collection: "fragrance",
+    brand: "Lattafa Pride",
     line: "Eau de Parfum",
-    price: 320,
-    image: u("1592945403244-b3fbafd7f539"),
+    price: 110,
+    concentration: "Eau de Parfum",
+    volume: "100 ml",
+    image: "/Lattafa_Pride_Ansaam_Gold.jpg",
     description:
-      "Delicate yet commanding, built around aged Iris Pallida, soft white suede and Madagascan vanilla.",
-    features: ["Botanical selection", "Limited crystal casing", "High-altitude sourcing"],
+      "An opulent oriental composition housed in a burgundy and gold flacon with ginkgo-leaf emblem detailing.",
+    features: ["Display base included", "100 ml eau de parfum", "Gold emblem cap"],
   },
   {
     id: 19,
-    slug: "coastal-neroli-blend",
-    name: "Coastal Neroli Blend",
+    slug: "lattafa-pride-art-of-universe",
+    name: "Art of Universe",
     collection: "fragrance",
-    line: "Eau de Toilette",
-    price: 240,
-    image: u("1615634260167-c8cdede054de"),
+    brand: "Lattafa Pride",
+    line: "Eau de Parfum",
+    price: 125,
+    concentration: "Eau de Parfum",
+    volume: "100 ml",
+    image: "/Lattafa_Pride_Art_Of_Universe.jpg",
     description:
-      "A luminous seaside accord of Tunisian neroli, sea salt and sun-warmed bergamot.",
-    features: ["Tunisian neroli", "Sea-salt accord", "Fresh coastal projection"],
+      "A celestial fougère-aromatic journey with cosmic engravings on a polished chrome and deep blue bottle.",
+    features: ["Chrome celestial plate", "100 ml natural spray", "Collector presentation box"],
+    tag: "New In",
   },
   {
     id: 20,
-    slug: "botanical-absolute-oil",
-    name: "Botanical Absolute Oil",
+    slug: "lattafa-pride-awaan-gold",
+    name: "Awaan Gold",
     collection: "fragrance",
-    line: "Perfume Oil",
-    price: 190,
-    image: u("1608528577891-eb055944f2e7"),
+    brand: "Lattafa Pride",
+    line: "Eau de Parfum",
+    price: 105,
+    concentration: "Eau de Parfum",
+    volume: "100 ml",
+    image: "/Lattafa_Pride_Awaan_Gold.jpg",
     description:
-      "A concentrated roll-on absolute oil of jasmine sambac and ylang-ylang, distilled on the archipelago.",
-    features: ["Alcohol-free oil base", "Jasmine sambac", "Travel roll-on flacon"],
+      "Olive-green matte glass with a pebbled gold emblem — an elegant woody-floral with Arabian character.",
+    features: ["Drawer-style gift box", "100 ml vaporisateur", "Gold dome cap"],
+  },
+  {
+    id: 21,
+    slug: "lattafa-pride-eternal-oud",
+    name: "Eternal Oud",
+    collection: "fragrance",
+    brand: "Lattafa Pride",
+    line: "Eau de Parfum",
+    price: 145,
+    concentration: "Eau de Parfum",
+    volume: "100 ml",
+    image: "/Lattafa_Pride_Eternal_Oud.jpg",
+    description:
+      "A sculptural oud composition presented under a glass cloche with a bronze tree stopper and amber juice.",
+    features: ["Cloche display pedestal", "100 ml eau de parfum", "Bronze tree cap sculpture"],
+    tag: "Signature",
+  },
+  {
+    id: 22,
+    slug: "lattafa-pride-ishq-al-shuyukh-silver",
+    name: "Ishq Al Shuyukh Silver",
+    collection: "fragrance",
+    brand: "Lattafa Pride",
+    line: "Eau de Parfum",
+    price: 115,
+    concentration: "Eau de Parfum",
+    volume: "100 ml",
+    image: "/Lattafa_Pride_Ishq_Al_Shuyukh_Silver.jpg",
+    description:
+      "A bold black and silver flacon featuring a jambiya dagger motif — rich oud, spice and leather intensity.",
+    features: ["Acrylic display case", "100 ml natural spray", "Silver crown cap"],
+  },
+  {
+    id: 23,
+    slug: "lattafa-pride-nebras",
+    name: "Nebras",
+    collection: "fragrance",
+    brand: "Lattafa Pride",
+    line: "Eau de Parfum",
+    price: 100,
+    concentration: "Eau de Parfum",
+    volume: "100 ml",
+    image: "/Lattafa_Pride_Nebras.jpg",
+    description:
+      "Sunburst gold medallion on matte black glass — a radiant amber-oud with warm resinous depth.",
+    features: ["Hammered gold cap", "100 ml vaporisateur", "Embossed presentation box"],
+  },
+  {
+    id: 24,
+    slug: "lattafa-pride-vintage-radio",
+    name: "Vintage Radio",
+    collection: "fragrance",
+    brand: "Lattafa Pride",
+    line: "Eau de Parfum",
+    price: 98,
+    concentration: "Eau de Parfum",
+    volume: "100 ml",
+    image: "/Lattafa_Pride_Vintage_Radio.jpg",
+    description:
+      "Nostalgic mid-century design meets modern perfumery — creamy woods and soft spice on a white lacquer bottle.",
+    features: ["Radio illustration flacon", "100 ml eau de parfum", "Gold semi-circle cap"],
+    tag: "New In",
+  },
+  {
+    id: 25,
+    slug: "ahmed-al-maghribi-blu-oud",
+    name: "Blu Oud",
+    collection: "fragrance",
+    brand: "Ahmed Al Maghribi",
+    line: "Eau de Parfum",
+    price: 88,
+    concentration: "Eau de Parfum",
+    volume: "100 ml",
+    image: "/Ahmed_Al_Maghribi_Blu_Oud_Eau_De_Parfum.jpg",
+    description:
+      "Frosted teal glass with gold filigree — a refined oud blended with fresh aromatic notes and botanical illustration packaging.",
+    features: ["Octagonal teal cap", "100 ml natural spray", "Fern-pattern gift box"],
+  },
+  {
+    id: 26,
+    slug: "ahmed-al-maghribi-kaaf",
+    name: "Kaaf",
+    collection: "fragrance",
+    brand: "Ahmed Al Maghribi",
+    line: "Eau de Parfum",
+    price: 82,
+    concentration: "Eau de Parfum",
+    volume: "100 ml",
+    image: "/Screenshot2024-08-01145642.png",
+    description:
+      "Clean aquatic freshness in a cylindrical flacon with bold Arabic gold lettering and painterly blue packaging.",
+    features: ["Cream matte cap", "100 ml eau de parfum", "Gold Arabic script label"],
+  },
+  {
+    id: 27,
+    slug: "ahmed-al-maghribi-tiff-tiff",
+    name: "Tiff Tiff",
+    collection: "fragrance",
+    brand: "Ahmed Al Maghribi",
+    line: "Eau de Parfum",
+    price: 92,
+    concentration: "Eau de Parfum",
+    volume: "100 ml",
+    image: "/Screenshot2025-10-03135941.png",
+    description:
+      "Turquoise ribbed glass with a faceted chrome cap — a bright floral-musky scent in crocodile-textured presentation.",
+    features: ["Fluted turquoise glass", "100 ml vaporisateur", "Chrome jewel cap"],
     tag: "New In",
   },
 
   // ── HOME SUPPLIES ────────────────────────────────────────
   {
-    id: 21,
+    id: 28,
     slug: "baroque-velvet-drapes",
     name: "Baroque Blackout Velvet Drapes",
     collection: "home-supplies",
+    brand: "NAYAL",
     line: "Drapery",
     price: 1400,
+    concentration: "",
+    volume: "",
     image: u("1513694203232-719a280e022f"),
     description:
       "Masterfully weighted velvet with woven geometric borders and total blackout thermal lining.",
@@ -345,36 +520,45 @@ export const products: Product[] = [
     tag: "Bestseller",
   },
   {
-    id: 22,
+    id: 29,
     slug: "coastal-sheer-curtains",
     name: "Coastal Sheer Linen Curtains",
     collection: "home-supplies",
+    brand: "NAYAL",
     line: "Drapery",
     price: 620,
+    concentration: "",
+    volume: "",
     image: u("1567016432779-094069958ea5"),
     description:
       "Featherweight sheer linen panels that soften the equatorial light into a warm, diffuse glow.",
     features: ["Sheer washed linen", "Diffuse light filtering", "Rod-pocket heading"],
   },
   {
-    id: 23,
+    id: 30,
     slug: "salon-lounge-throw",
     name: "Salon Cashmere Throw",
     collection: "home-supplies",
+    brand: "NAYAL",
     line: "Living",
     price: 540,
+    concentration: "",
+    volume: "",
     image: u("1600585154340-be6161a56a0c"),
     description:
       "A generously scaled cashmere-blend throw finished with a hand-knotted fringe for the grand salon.",
     features: ["Cashmere-wool blend", "Hand-knotted fringe", "Oversized proportions"],
   },
   {
-    id: 24,
+    id: 31,
     slug: "artisan-scented-candle",
     name: "Artisan Coastal Candle",
     collection: "home-supplies",
+    brand: "NAYAL",
     line: "Ambience",
     price: 160,
+    concentration: "",
+    volume: "",
     image: u("1602874801006-e26c4c5b5e8a"),
     description:
       "A hand-poured coconut-wax candle scented with fig leaf, driftwood and warm amber.",
@@ -401,4 +585,28 @@ export function getCollectionLines(collection: Collection): string[] {
 
 export function getFeaturedProducts(count = 6): Product[] {
   return products.filter((p) => p.tag).slice(0, count)
+}
+
+export function getProductById(id: number): Product | undefined {
+  return products.find((p) => p.id === id)
+}
+
+export function getProductBySlug(slug: string): Product | undefined {
+  return products.find((p) => p.slug === slug)
+}
+
+const CONCENTRATION_ABBR: Record<string, string> = {
+  "Eau de Parfum": "EDP",
+  "Eau de Toilette": "EDT",
+  "Extrait de Parfum": "Parfum",
+  "Perfume Oil": "Oil",
+}
+
+/** Versace-style PLP caption, e.g. "Ansaam Gold EDP 100 ml". */
+export function formatProductTileLabel(product: Product): string {
+  const abbr = CONCENTRATION_ABBR[product.concentration] ?? product.concentration
+  if (product.collection === "fragrance" && abbr && product.volume) {
+    return `${product.name} ${abbr} ${product.volume}`
+  }
+  return product.name
 }
